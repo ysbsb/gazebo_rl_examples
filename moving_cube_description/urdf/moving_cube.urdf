@@ -1,0 +1,102 @@
+<robot name="moving_cube">
+
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/moving_cube</robotNamespace>
+        </plugin>
+    </gazebo>
+
+    
+    <gazebo>
+        <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+            <robotNamespace>/moving_cube</robotNamespace>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>50.0</updateRate>
+            <bodyName>cube_body</bodyName>
+            <topicName>odom</topicName>
+            <gaussianNoise>0.01</gaussianNoise>
+            <frameName>world</frameName>
+            <xyzOffsets>0 0 0</xyzOffsets>
+            <rpyOffsets>0 0 0</rpyOffsets>
+        </plugin>
+    </gazebo>
+    
+
+    <link name="cube_body">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.5" />
+            <inertia ixx="0.00333333333333" ixy="0.0" ixz="0.0" iyy="0.00333333333333" iyz="0.0" izz="0.00333333333333"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.2 0.2 0.2"/>
+            </geometry>
+        </collision>
+	    <visual>
+	      <geometry>
+	        <box size="0.2 0.2 0.2"/>
+	      </geometry>
+	    </visual>
+    </link>
+
+
+    <link name="inertia_wheel_roll">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.5" />
+            <inertia ixx="0.000804166666667" ixy="0.0" ixz="0.0" iyy="0.000804166666667" iyz="0.0" izz="0.0016"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.08" length="0.01"/>
+            </geometry>
+        </collision>
+	    <visual>
+	      <geometry>
+	        <cylinder radius="0.08" length="0.01"/>
+	      </geometry>
+	    </visual>
+    </link>
+
+
+    <gazebo reference="cube_body">
+        <kp>1000000.0</kp>
+        <kd>1000000.0</kd>
+        <mu1>1000000.0</mu1>
+        <mu2>1000000.0</mu2>
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="inertia_wheel_roll">
+        <kp>1000.0</kp>
+        <kd>1000.0</kd>
+        <mu1>0.5</mu1>
+        <mu2>0.5</mu2>
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <joint name="inertia_wheel_roll_joint" type="continuous">
+        <origin xyz="0.1 0.0 0.0" rpy="0 1.57 0"/>
+        <parent link="cube_body"/>
+        <child  link="inertia_wheel_roll"/>
+        <limit effort="200" velocity="1000.0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+
+    <transmission name="inertia_wheel_roll_joint_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="inertia_wheel_roll_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="inertia_wheel_roll_jointMotor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+</robot>
+

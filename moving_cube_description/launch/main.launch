@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+    <include file="$(find moving_cube_description)/launch/start_world.launch"/>
+    <include file="$(find moving_cube_description)/launch/put_cube_in_world.launch"/>
+
+</launch>

@@ -1,0 +1,17 @@
+# .yaml config file
+#
+# The PID gains and controller settings must be saved in a yaml file that gets loaded
+# to the param server via the roslaunch file (moving_cube_control.launch).
+
+moving_cube:
+  # Publish all joint states -----------------------------------
+  # Creates the /joint_states topic necessary in ROS
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 30
+
+  # Effort Controllers ---------------------------------------
+  inertia_wheel_roll_joint_velocity_controller:
+    type: effort_controllers/JointVelocityController
+    joint: inertia_wheel_roll_joint
+    pid: {p: 1.0, i: 0.0, d: 0.0}

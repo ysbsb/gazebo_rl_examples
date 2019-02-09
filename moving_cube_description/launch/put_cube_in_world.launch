@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+    <include file="$(find moving_cube_description)/launch/spawn_moving_cube.launch"/>
+    <include file="$(find moving_cube_description)/launch/moving_cube_control.launch"/>
+
+</launch>

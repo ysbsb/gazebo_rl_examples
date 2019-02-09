@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <rosparam file="$(find moving_cube_description)/config/moving_cube.yaml"
+            command="load"/>
+
+  <node name="robot_state_publisher_moving_cube" pkg="robot_state_publisher" type="robot_state_publisher"
+        respawn="false" output="screen">
+            <param name="publish_frequency" type="double" value="30.0" />
+            <param name="ignore_timestamp" type="bool" value="true" />
+            <param name="tf_prefix" type="string" value="moving_cube" />
+            <remap from="/joint_states" to="/moving_cube/joint_states" />
+        </node>
+
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+        output="screen" args="--namespace=/moving_cube
+                              joint_state_controller
+                              inertia_wheel_roll_joint_velocity_controller">
+  </node>
+
+  <node name="gazebo_model_odom_pubish_node"
+        pkg="moving_cube_description"
+        type="get_gazebo_model_odometry.py" respawn="false"
+        output="screen" args="">
+  </node>
+
+</launch>
