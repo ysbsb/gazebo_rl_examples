@@ -1,4 +1,4 @@
-# Moving cube robot q-learning using open ai gym in gazebo
+# Moving cube robot q-learning using open ai gym in ros and gazebo
 
 Moving cube example using open ai gym in ros gazebo.
 
@@ -29,9 +29,7 @@ Look communications between python scripts. And use urdf, yaml files to set mode
 ```shell
 cd ~/catkin_ws/src
 
-git clone https://bitbucket.org/theconstructcore/moving_cube
-git clone https://bitbucket.org/theconstructcore/moving_cube_training
-git clone https://bitbucket.org/theconstructcore/moving_cube_ai
+git clone https://github.com/subinlab/rl_moving_cube
 ```
 
 <br>
@@ -59,8 +57,6 @@ git clone https://bitbucket.org/theconstructcore/moving_cube_ai
 ```
 roslaunch gazebo_ros empty_world.launch
 ```
-
-<br>
 
 <h4>Spawn cube model in gazebo world</h4>
 
