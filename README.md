@@ -1,4 +1,4 @@
-# rl_moving_cube
+# Moving cube robot q-learning using open ai gym in gazebo
 
 Moving cube example using open ai gym in ros gazebo.
 
