@@ -1,10 +1,8 @@
-# Moving cube robot q-learning using open ai gym in ros and gazebo
+# Moving Cube Robot OpenAI Gym Q-Learning in ROS Gazebo
 
 Moving cube example using open ai gym in ros gazebo.
 
 Look communications between python scripts. And use urdf, yaml files to set model and parameters.
-
-<br>
 
 <h2>Model</h2>
 
@@ -14,13 +12,9 @@ Look communications between python scripts. And use urdf, yaml files to set mode
 
 <em>Youtube</em> : <https://www.youtube.com/watch?v=n_6p-1J551Y>
 
-<br>
-
 <h4>Training Example</h4>
 
 <em>Youtube</em> : <https://www.youtube.com/watch?v=3_afZzjAQbc>
-
-<Br>
 
 <h2>Settings</h2>
 
@@ -32,8 +26,6 @@ cd ~/catkin_ws/src
 git clone https://github.com/subinlab/rl_moving_cube
 ```
 
-<br>
-
 <h3>Setting description</h3>
 
 <h4>Ros package in catkin_ws</h4>
@@ -42,13 +34,9 @@ git clone https://github.com/subinlab/rl_moving_cube
 - `moving_cube_training_pkg`
 - `moving_cube_learning`
 
-<br>
-
 <h4>Files in ros package</h4>
 
 `.py` `.urdf` `.yaml` `.launch` 
-
-<br>
 
 <h2>Run</h2>
 
@@ -81,8 +69,6 @@ rosrun moving_cube_training_pkg cube_rl_utils.py
 ```
 roslaunch my_moving_cube_training_pkg start_training.launch
 ```
-
-<br>
 
 <h2><em>References</em></h2>
 
